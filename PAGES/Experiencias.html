@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wayra Aventura</title>
+  <link rel="icon" href="/MEDIA/IMAGENES/LOGO/colibri.png" type="image/x-icon" sizes="52x52">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Reset y estilos generales */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #F4DCD1;
+      color: #640C00;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+
+    /* Header */
+   .header {
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+    .logo {
+      margin-left: 20px;
+    }
+
+    .logo img {
+      height: 200px;
+      width: auto;
+    }
+
+    .navbar-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding-right: 11%;
+    }
+
+    .navbar {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 20px;
+      border: 1px solid white;
+      border-radius: 30px;
+      backdrop-filter: blur(5px);
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: #D72501;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .navbar a:hover,
+    .navbar a.active {
+      background: rgba(255, 255, 255, 0.2);
+      color: #640C00;
+    }
+
+    /* Contenido principal */
+    h1 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      color: #D72501;
+    }
+
+    .card-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 1000px;
+      width: 100%;
+      margin-top: 40px; /* espacio entre header y cards */
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      width: 300px;
+      transition: transform 0.3s ease;
+      border: 3px solid #FDAB09;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 15px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #640C00;
+    }
+
+    .card-description {
+      font-size: 14px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .card-rating {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #F67905;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .recommendations {
+      max-width: 1000px;
+      margin-top: 60px;
+      color: #333;
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .recommendations h2 {
+      text-align: center;
+      color: #E2501D;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .recommendations ol {
+      padding-left: 20px;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .recommendations ol li {
+      margin-bottom: 10px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #640C00;
+      color: white;
+      padding: 30px 40px;
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .footer-column {
+      flex: 1 1 200px;
+      text-align: left;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .footer-text {
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .footer-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+
+    .footer-logo {
+      width: 200px;
+      height: auto;
+      margin-left: -150px;
+    }
+
+    @media (max-width: 768px) {
+      .card-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-column {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .footer-logo {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-[#F4DCD1] text-gray-800 font-sans">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="/MEDIA/IMAGENES/LOGO/logo titulo.png" alt="Wayra Purikuna Logo" />
+    </div>
+    <div class="navbar-wrapper">
+      <nav class="navbar">
+        <ul>
+          <li><a href="Inicio.html">Inicio</a></li>
+          <li><a href="Destinos.html" >Destinos</a></li>
+          <li><a href="Experiencias.html" class="active">Experiencias</a></li>
+          <li><a href="PlanificaTuViaje.html">Planifica tu Viaje</a></li>
+          <li><a href="Galería.html">Galería</a></li>
+          <li><a href="Contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="card-container">
+
+      <!-- Card 1 -->
+      <div class="card">
+        <img src="/MEDIA/IMAGENES/EXPERIENCIA 1.jpg" alt="Turismo de Aventura">
+        <div class="card-rating">★★★★★</div>
+        <div class="card-content">
+          <div class="card-title">TURISMO DE AVENTURA</div>
+          <div class="card-description">
+            El turismo de aventura en Huacachina ofrece emocionantes paseos en tubulares por las imponentes dunas del desierto iqueño. 
+            Los visitantes también pueden practicar sandboard, deslizándose a gran velocidad sobre la arena. 
+            Es una experiencia adrenalínica rodeada de paisajes únicos, con atardeceres inolvidables en el oasis.
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <img src="/MEDIA/IMAGENES/EXPERIENCIA 2.jpg" alt="Cultura y Tradición">
+        <div class="card-rating">★★★★★</div>
+        <div class="card-content">
+          <div class="card-title">CULTURA Y TRADICIÓN</div>
+          <div class="card-description">
+            Las Líneas de Nazca son geoglifos milenarios trazados en el desierto, visibles solo desde el aire. 
+            Representan figuras de animales y formas geométricas, llenas de misterio y significado cultural. 
+            Son un legado único de la antigua civilización Nazca.
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card">
+        <img src="/MEDIA/IMAGENES/EXPEROIENCIA 3.jpg" alt="Naturaleza Ecoturismo">
+        <div class="card-rating">★★★★★</div>
+        <div class="card-content">
+          <div class="card-title">NATURALEZA ECOTURISMO</div>
+          <div class="card-description">
+            Las Islas Ballestas ofrecen un entorno natural único, hogar de lobos marinos, pingüinos de Humboldt y aves marinas. 
+            Son parte de la Reserva Nacional de Paracas, un santuario de biodiversidad costera. 
+            El ecoturismo aquí permite disfrutar y preservar la vida silvestre en su hábitat natural.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Recommendations Section -->
+    <div class="recommendations">
+      <h2>RECOMENDACIONES PARA IR A ICA Y SUS LUGARES TURÍSTICOS:</h2>
+      <ol>
+        <li><strong>Clima y ropa adecuada:</strong> Ica tiene un clima cálido y seco todo el año. Lleva ropa ligera, sombrero, gafas de sol y protector solar.</li>
+        <li><strong>Hidratación:</strong> El sol es intenso, especialmente en el desierto de Huacachina y Paracas. Lleva siempre agua contigo.</li>
+        <li><strong>Tours organizados:</strong> Muchos atractivos como las Islas Ballestas, el Oasis de Huacachina o las Líneas de Nazca requieren tours. Reserva con anticipación para asegurar disponibilidad y calidad.</li>
+        <li><strong>Horarios y accesos:</strong> Algunos lugares tienen horarios específicos, como la Reserva de Paracas o los museos. Infórmate bien para no perder visitas importantes.</li>
+        <li><strong>Efectivo y conectividad:</strong> Lleva algo de efectivo, ya que en zonas rurales o pequeños negocios no siempre aceptan tarjetas. La señal de internet puede ser limitada en algunos puntos.</li>
+        <li><strong>Respeto por el entorno:</strong> Ica alberga ecosistemas frágiles. Cuida la fauna, no dejes basura y sigue las indicaciones de los guías.</li>
+      </ol>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-row">
+        <!-- Primera columna -->
+        <div class="footer-column">
+          <img src="/MEDIA/IMAGENES/LOGO/logo blanco.png" alt="Logo" class="footer-logo" />
+          <div class="footer-text">
+            <div class="footer-title">Integrantes:</div>
+            Bravo Espinoza Nataly<br />
+            Gutierrez Azcona Betsabee<br />
+            Loaiza Riquelme Camila<br />
+            Portales Montesinos Jimena<br />
+            Rojas Padilla Alessandra
+          </div>
+        </div>
+
+        <!-- Segunda columna -->
+        <div class="footer-column">
+          <div class="footer-text">
+            <div class="footer-title">Curso:</div>
+            Diseño Web<br /><br />
+            <div class="footer-title">Docente:</div>
+            Rosangela Abregú Marcos
+          </div>
+          <div class="footer-text">
+            <div class="footer-title">Examen Parcial II</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

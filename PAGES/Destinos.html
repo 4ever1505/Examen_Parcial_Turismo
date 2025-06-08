@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wayra Aventura</title>
+  <link rel="icon" href="/MEDIA/IMAGENES/LOGO/colibri.png" type="image/x-icon" sizes="52x52">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      color: white;
+      background: #F4DCD1;
+    }
+
+    .header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      z-index: 10;
+      background: transparent;
+    }
+
+    .logo {
+      margin-left: 20px;
+    }
+
+    .logo img {
+      height: 200px;
+      width: auto;
+    }
+
+    .navbar-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding-right: 11%;
+    }
+
+    .navbar {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 20px;
+      border: 1px solid white;
+      border-radius: 30px;
+      backdrop-filter: blur(5px);
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: #D72501;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .navbar a:hover,
+    .navbar a.active {
+      background: rgba(255, 255, 255, 0.2);
+      color: #640C00;
+    }
+
+    .max-w-7xl {
+      max-width: 80rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .main-content {
+      padding-left: 4rem;
+      padding-right: 4rem;
+      padding-top: 12rem;
+      padding-bottom: 4rem;
+    }
+
+    footer {
+      background-color: #640C00;
+      color: white;
+      padding: 30px 40px;
+      margin-top: 40px;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .footer-column {
+      flex: 1 1 200px;
+      text-align: left;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .footer-text {
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .footer-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+
+    .footer-logo {
+      width: 200px;
+      height: auto;
+      margin-left: -150px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-column {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .footer-logo {
+        margin-left: 0;
+      }
+    }
+
+    /* 🔸 ESTILOS PARA LA TABLA TURÍSTICA */
+    .tabla-turistica {
+      width: 80%;
+      max-width: 1000px;
+      margin: 0 auto 50px auto;
+      border-collapse: separate;
+      border-spacing: 0;
+      background-color: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      border: 2px solid #BB4504;
+      border-radius: 12px;
+      overflow: hidden;
+      color: black;
+    }
+
+    .tabla-turistica th,
+    .tabla-turistica td {
+      border: 1px solid #F67905;
+      padding: 20px;
+      font-size: 15px;
+      vertical-align: middle;
+      text-align: center;
+      background-color: #FFF6EE;
+      transition: background-color 0.3s ease;
+    }
+
+    .tabla-turistica th {
+      background-color: #D72501;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .tabla-turistica td:hover {
+      background-color: #FDAB09;
+      color: #640C00;
+    }
+  </style>
+</head>
+<body class="bg-[#F4DCD1] text-gray-800 font-sans">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="/MEDIA/IMAGENES/LOGO/logo titulo.png" alt="Wayra Purikuna Logo" />
+    </div>
+    <div class="navbar-wrapper">
+      <nav class="navbar">
+        <ul>
+          <li><a href="Inicio.html">Inicio</a></li>
+          <li><a href="Destinos.html" class="active">Destinos</a></li>
+          <li><a href="Experiencias.html">Experiencias</a></li>
+          <li><a href="PlanificaTuViaje.html">Planifica tu Viaje</a></li>
+          <li><a href="Galería.html">Galería</a></li>
+          <li><a href="Contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="max-w-7xl mx-auto main-content">
+
+    <!-- 🔸 TABLA TURÍSTICA -->
+    <table class="tabla-turistica">
+      <thead>
+        <tr>
+          <th>LUGARES TURÍSTICOS</th>
+          <th>UBICACIÓN</th>
+          <th>COSTOS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>La Huacachina</td>
+          <td>• Se encuentra a 20 minutos de la ciudad de Ica, en la costa peruana, dentro del desierto.</td>
+          <td>S/.104.00</td>
+        </tr>
+        <tr>
+          <td>Las Islas Ballestas</td>
+          <td>• Las Islas Ballestas se encuentran frente a la costa del distrito de Paracas, en la región Ica, a unos 260 km al sur de Lima.</td>
+          <td>S/. 56.00</td>
+        </tr>
+        <tr>
+          <td>Líneas de Nasca</td>
+          <td>• Las líneas están en la pampa de Ingenio, Nazca, Palpa y Socos, entre las provincias de Nazca y Palpa.</td>
+          <td>S/.392.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- CARDS CON IMÁGENES -->
+    <div class="mb-8 text-center">
+      <h1 class="text-2xl font-semibold">Nuestros destinos más populares</h1>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+      <!-- Card 1 -->
+      <div class="relative rounded-xl overflow-hidden">
+        <img src="/MEDIA/IMAGENES/DESTINO 1.jpg" alt="Travel" class="w-full h-72 object-cover" />
+        <div class="absolute bottom-0 p-4 bg-gradient-to-t from-black via-transparent to-transparent text-white">
+          <h2 class="text-xl font-semibold">La Huacachina</h2>
+          <p class="text-sm">Se encuentra a 20 minutos de la ciudad de Ica, en la costa peruana, dentro del desierto.</p>
+        </div>
+        <div class="absolute top-2 right-2 bg-white p-1 rounded-full"><span>↗</span></div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="relative rounded-xl overflow-hidden">
+        <img src="/MEDIA/IMAGENES/DESTINO 2.jpg" alt="Adventure" class="w-full h-72 object-cover" />
+        <div class="absolute bottom-0 p-4 bg-gradient-to-t from-black via-transparent to-transparent text-white">
+          <h2 class="text-xl font-semibold">Lineas de Nasca</h2>
+          <p class="text-sm">Las líneas están en la pampa de Ingenio, Nazca, Palpa y Socos, entre las provincias de Nazca y Palpa.</p>
+        </div>
+        <div class="absolute top-2 right-2 bg-white p-1 rounded-full"><span>↗</span></div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="relative rounded-xl overflow-hidden">
+        <img src="/MEDIA/IMAGENES/DESTINO 3.jpg" alt="Gear" class="w-full h-72 object-cover" />
+        <div class="absolute bottom-0 p-4 bg-gradient-to-t from-black via-transparent to-transparent text-white">
+          <h2 class="text-xl font-semibold">Las Islas Ballestas</h2>
+          <p class="text-sm">Las Islas Ballestas se encuentran frente a la costa del distrito de Paracas, en la región Ica, a unos 260 km al sur de Lima.</p>
+        </div>
+        <div class="absolute top-2 right-2 bg-white p-1 rounded-full"><span>↗</span></div>
+      </div>
+    </div>
+
+    <!-- PRECIOS -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4">DESCRIPCIÓN</h3>
+      <div class="grid md:grid-cols-3 gap-6 text-sm">
+        <div>
+          <p class="text-gray-500 mb-1">Próximo tour: 15 de junio,2025</p>
+          <p class="text-xl font-semibold">El "Oasis de América" en Ica, Perú, es un oasis único rodeado de dunas y una laguna turquesa. Destaca por su belleza natural y actividades emocionantes como sandboarding y paseos en buggies. Es el único oasis en el desierto sudamericano y un destino ideal para quienes buscan aventura y naturaleza.</p>
+        </div>
+        <div>
+          <p class="text-gray-500 mb-1">Próximo tour: 20 de junio,2025</p>
+          <p class="text-xl font-semibold">Ubicadas en la región de Ica, Perú, son impresionantes geoglifos precolombinos que se extienden sobre el desierto. Famosas por su misterio y tamaño, son un atractivo turístico destacado y Patrimonio de la Humanidad por la UNESCO. La mejor forma de apreciarlas es desde el aire, ofreciendo una experiencia única e inolvidable. </p>
+        </div>
+        <div>
+          <p class="text-gray-500 mb-1">Próximo tour: 25 de junio,2025</p>
+          <p class="text-xl font-semibold">Ubicadas en Ica, Perú, son un destino imperdible para los amantes de la naturaleza. Dentro de la Reserva Nacional de Paracas, ofrecen un espectáculo único de biodiversidad marina. Podrás observar lobos marinos, pingüinos de Humboldt y aves en su hábitat natural. Un paraíso ecológico que combina paisajes impresionantes y vida silvestre en su máxima expresión.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-row">
+        <div class="footer-column">
+          <img src="/MEDIA/IMAGENES/LOGO/logo blanco.png" alt="Logo" class="footer-logo" />
+          <div class="footer-text">
+            <div class="footer-title">Integrantes:</div>
+            Bravo Espinoza Nataly<br />
+            Gutierrez Azcona Betsabee<br />
+            Loaiza Riquelme Camila<br />
+            Portales Montesinos Jimena<br />
+            Rojas Padilla Alessandra
+          </div>
+        </div>
+        <div class="footer-column">
+          <div class="footer-text">
+            <div class="footer-title">Curso:</div>
+            Diseño Web<br /><br />
+            <div class="footer-title">Docente:</div>
+            Rosangela Abregú Marcos
+          </div>
+          <div class="footer-text">
+            <div class="footer-title">Examen Parcial II</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

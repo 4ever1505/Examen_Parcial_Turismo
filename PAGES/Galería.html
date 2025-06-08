@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wayra Aventura</title>
+  <link rel="icon" href="/MEDIA/IMAGENES/LOGO/colibri.png" type="image/x-icon" sizes="52x52">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      color: white;
+      background: #F4DCD1;
+    }
+
+    .header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      z-index: 10;
+      background: transparent;
+    }
+
+    .logo {
+      margin-left: 20px;
+    }
+
+    .logo img {
+      height: 200px;
+      width: auto;
+    }
+
+    .navbar-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding-right: 11%;
+    }
+
+    .navbar {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 20px;
+      border: 1px solid white;
+      border-radius: 30px;
+      backdrop-filter: blur(5px);
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: #D72501;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .navbar a:hover,
+    .navbar a.active {
+      background: rgba(255, 255, 255, 0.2);
+      color: #640C00;
+    }
+
+    footer {
+      background-color: #640C00;
+      color: white;
+      padding: 30px 40px;
+      margin-top: 40px;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .footer-column {
+      flex: 1 1 200px;
+      text-align: left;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .footer-text {
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .footer-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+
+    .footer-logo {
+      width: 200px;
+      height: auto;
+      margin-left: -150px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-column {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .footer-logo {
+        margin-left: 0;
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      padding: 0 20px;
+      margin: 0 auto;
+      padding-top: 190px; /* REDUCIDA PARA ACERCAR EL BODY AL HEADER */
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 200px;
+      gap: 20px;
+    }
+
+    .card {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      align-items: flex-end;
+      padding: 15px;
+      background-color: black;
+    }
+
+    .card::after {
+      content: '→';
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      font-size: 20px;
+      z-index: 20;
+    }
+
+    .card video,
+    .card img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .card .content {
+      position: relative;
+      z-index: 10;
+    }
+
+    .kelingking { grid-column: 1; grid-row: 1 / span 2; }
+    .grand      { grid-column: 2; grid-row: 1; }
+    .cappadocia { grid-column: 3; grid-row: 1; }
+    .padar      { grid-column: 2 / span 2; grid-row: 2; }
+    .nueva1     { grid-column: 3; grid-row: 3 / span 2; }
+    .nueva2     { grid-column: 2; grid-row: 3; }
+    .nueva3     { grid-column: 1; grid-row: 3; }
+    .nueva4     { grid-column: 1 / span 2; grid-row: 4; }
+
+    @media (max-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 250px;
+      }
+
+      .container {
+        padding-top: 180px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="/MEDIA/IMAGENES/LOGO/logo titulo.png" alt="Wayra Purikuna Logo" />
+    </div>
+    <div class="navbar-wrapper">
+      <nav class="navbar">
+        <ul>
+          <li><a href="Inicio.html">Inicio</a></li>
+          <li><a href="Destinos.html">Destinos</a></li>
+          <li><a href="Experiencias.html">Experiencias</a></li>
+          <li><a href="Planifica tu Viaje.html">Planifica tu Viaje</a></li>
+          <li><a href="Galería.html" class="active">Galería</a></li>
+          <li><a href="Contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="container">
+    <div class="grid">
+      <div class="card kelingking">
+        <video autoplay muted loop playsinline>
+          <source src="/MEDIA/VIDEOS/VIDEO_1.2.mp4" type="video/mp4" />
+        </video>
+        <div class="content">
+          Descubre un rincón de ensueño<br /><small>Déjate maravillar por la naturaleza en su máxima expresión</small>
+        </div>
+      </div>
+
+      <div class="card grand">
+        <video autoplay muted loop playsinline>
+          <source src="/MEDIA/VIDEOS/VIDEO_1.1.mp4" type="video/mp4" />
+        </video>
+        <div class="content">
+          Sumérgete en una cultura fascinante<br /><small>Colores, historia y arquitectura que te sorprenderán</small>
+        </div>
+      </div>
+
+      <div class="card cappadocia">
+        <video autoplay muted loop playsinline>
+          <source src="/MEDIA/VIDEOS/VIDEO_2.1.mp4" type="video/mp4" />
+        </video>
+        <div class="content">
+          Vive una experiencia mágica<br /><small>Siente la libertad entre paisajes únicos</small>
+        </div>
+      </div>
+
+      <div class="card padar">
+        <video autoplay muted loop playsinline>
+          <source src="/MEDIA/VIDEOS/VIDEO_3.1.mp4" type="video/mp4" />
+        </video>
+        <div class="content">
+          Explora lo inesperado<br /><small>Conecta con lo salvaje en un lugar que parece irreal</small>
+        </div>
+      </div>
+
+      <div class="card nueva1">
+        <video autoplay muted loop playsinline>
+          <source src="/MEDIA/VIDEOS/VIDEO_2.2.mp4" type="video/mp4" />
+        </video>
+        <div class="content">
+          Aventura sin límites<br /><small>Una travesía que marcará tu alma viajera</small>
+        </div>
+      </div>
+
+      <div class="card nueva2">
+        <img src="/MEDIA/IMAGENES/GALERIA 1.1.jpg" alt="Nuevo Destino 2" />
+        <div class="content">
+          Un destino de ensueño<br /><small>Donde cada paso es una postal inolvidable</small>
+        </div>
+      </div>
+
+      <div class="card nueva3">
+        <img src="/MEDIA/IMAGENES/GALERIA 1.2.jpg" alt="Nuevo Destino 3" />
+        <div class="content">
+          Naturaleza que enamora<br /><small>El equilibrio perfecto entre paz y aventura</small>
+        </div>
+      </div>
+
+      <div class="card nueva4">
+        <video autoplay muted loop playsinline>
+          <source src="/MEDIA/VIDEOS/VIDEO_3.2.mp4" type="video/mp4" />
+        </video>
+        <div class="content">
+          Déjate llevar por el momento<br /><small>Porque el mundo está lleno de lugares mágicos</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-row">
+        <div class="footer-column">
+          <img src="/MEDIA/IMAGENES/LOGO/logo blanco.png" alt="Logo" class="footer-logo" />
+          <div class="footer-text">
+            <div class="footer-title">Integrantes:</div>
+            Bravo Espinoza Nataly<br />
+            Gutierrez Azcona Betsabee<br />
+            Loaiza Riquelme Camila<br />
+            Portales Montesinos Jimena<br />
+            Rojas Padilla Alessandra
+          </div>
+        </div>
+        <div class="footer-column">
+          <div class="footer-text">
+            <div class="footer-title">Curso:</div>
+            Diseño Web<br /><br />
+            <div class="footer-title">Docente:</div>
+            Rosangela Abregú Marcos
+          </div>
+          <div class="footer-text">
+            <div class="footer-title">Examen Parcial II</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

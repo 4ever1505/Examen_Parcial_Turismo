@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wayra Aventura</title>
+  <link rel="icon" href="/MEDIA/IMAGENES/LOGO/colibri.png" type="image/x-icon" sizes="52x52">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #F4DCD1;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      z-index: 10;
+      background: transparent;
+    }
+    .logo {
+      margin-left: 20px;
+    }
+    .logo img {
+      height: 200px;
+      width: auto;
+    }
+    .navbar-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding-right: 11%;
+    }
+    .navbar {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 20px;
+      border: 1px solid white;
+      border-radius: 30px;
+      backdrop-filter: blur(5px);
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .navbar a {
+      color: #D72501;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .navbar a:hover,
+    .navbar a.active {
+      background: rgba(255, 255, 255, 0.2);
+      color: #640C00;
+    }
+    .container {
+      padding: 20px;
+      max-width: 900px;
+      width: 100%;
+      margin: 200px auto 80px;
+      flex-grow: 1;
+    }
+    .weather-main {
+      background: #D72501;
+      color: white;
+      padding: 40px 20px 20px 60px;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      max-width: 810px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .weather-main h1 {
+      margin: 0;
+      font-size: 2.2em;
+    }
+    .weather-details {
+      text-align: center;
+    }
+    .weather-details p {
+      margin: 6px 0;
+      font-size: 1.1em;
+    }
+    .forecast {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 20px;
+      flex-wrap: nowrap;
+    }
+    .forecast-day {
+      background: #FDAB09;
+      padding: 25px;
+      border-radius: 16px;
+      width: 150px;
+      text-align: center;
+      color: white;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    }
+    .forecast-day:nth-child(even) {
+      background: #F67905;
+    }
+    .forecast-day p {
+      margin: 8px 0;
+      font-size: 1.1em;
+    }
+    .forecast-day .temp {
+      font-size: 2.6em;
+      font-weight: bold;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    button {
+      background: #640C00;
+      color: white;
+      padding: 20px 40px;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      font-size: 1.2em;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      transition: background 0.3s, transform 0.2s;
+      min-width: 200px;
+      width: fit-content;
+      text-align: center;
+    }
+    button:hover {
+      background: #F67905;
+      transform: scale(1.05);
+      color: white;
+    }
+    footer {
+      background-color: #640C00;
+      color: white;
+      padding: 30px 40px;
+      margin-top: auto;
+    }
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      width: 100%;
+      max-width: 800px;
+    }
+    .footer-column {
+      flex: 1 1 200px;
+      text-align: left;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .footer-text {
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .footer-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+    .footer-logo {
+      width: 200px;
+      height: auto;
+      margin-left: -150px;
+    }
+    @media (max-width: 768px) {
+      .container {
+        margin-top: 350px;
+      }
+      .footer-row {
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-column {
+        justify-content: center;
+        text-align: center;
+      }
+      .footer-logo {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="/MEDIA/IMAGENES/LOGO/logo titulo.png" alt="Wayra Purikuna Logo" />
+    </div>
+    <div class="navbar-wrapper">
+      <nav class="navbar">
+        <ul>
+          <li><a href="Inicio.html">Inicio</a></li>
+          <li><a href="Destinos.html">Destinos</a></li>
+          <li><a href="Experiencias.html">Experiencias</a></li>
+          <li><a href="PlanificaTuViaje.html" class="active">Planifica tu Viaje</a></li>
+          <li><a href="Galería.html">Galería</a></li>
+          <li><a href="Contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <div class="weather-main">
+      <h1>Clima actual en ICA - 2025</h1>
+      <div class="weather-details">
+        <p><strong>Temperatura:</strong> 24°C</p>
+        <p><strong>Condición:</strong> Tormenta (Sensación de 22°C)</p>
+        <p><strong>Presión:</strong> 1010 mb</p>
+        <p><strong>Viento:</strong> 4 km/h</p>
+        <p><strong>Humedad:</strong> 95%</p>
+        <p><strong>Visibilidad:</strong> 7 km</p>
+      </div>
+    </div>
+    <div class="forecast">
+      <div class="forecast-day">
+        <p><strong>06 Jun</strong></p>
+        <p class="temp">27°C</p>
+        <p>Tormenta</p>
+      </div>
+      <div class="forecast-day">
+        <p><strong>07 Jun</strong></p>
+        <p class="temp">27°C</p>
+        <p>Parcialmente soleado</p>
+      </div>
+      <div class="forecast-day">
+        <p><strong>08 Jun</strong></p>
+        <p class="temp">25°C</p>
+        <p>Parcialmente soleado</p>
+      </div>
+      <div class="forecast-day">
+        <p><strong>09 Jun</strong></p>
+        <p class="temp">26°C</p>
+        <p>Lluvia ligera</p>
+      </div>
+      <div class="forecast-day">
+        <p><strong>10 Jun</strong></p>
+        <p class="temp">25°C</p>
+        <p>Lluvia</p>
+      </div>
+    </div>
+    <!-- Card de Información del Viaje -->
+    <div style="background-color: #FDAB09; padding: 25px 30px; max-width: 600px; margin: 30px auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 12px; color: #ffffff;text-align: center;">
+      <h2 style="margin-top: 0; margin-bottom: 15px; font-size: 24px;">VIAJE</h2>
+      <ul style="margin: 0; padding-left: 20px;">
+        <li style="margin-bottom: 10px;"><strong>Duración:</strong> Aproximadamente 4.5 a 5 horas.</li>
+        <li style="margin-bottom: 10px;"><strong>Precios:</strong> Desde S/33 hasta S/140,<br>dependiendo de la empresa y el servicio.</li>
+        <li style="margin-bottom: 10px;"><strong>Horarios:</strong> Salidas desde las 12:30 a.m. hasta las 8:45 p.m.</li>
+      </ul>
+    </div>
+    <div class="button-container">
+      <button onclick="window.open('https://www.meteored.pe/tiempo-en_Ica-America+Sur-Peru-Ica--1-23117.html', '_blank')">
+        Ver clima en Google
+      </button>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-row">
+        <div class="footer-column">
+          <img src="/MEDIA/IMAGENES/LOGO/logo blanco.png" alt="Logo" class="footer-logo" />
+          <div class="footer-text">
+            <div class="footer-title">Integrantes:</div>
+            Bravo Espinoza Nataly<br />
+            Gutierrez Azcona Betsabee<br />
+            Loaiza Riquelme Camila<br />
+            Portales Montesinos Jimena<br />
+            Rojas Padilla Alessandra
+          </div>
+        </div>
+        <div class="footer-column">
+          <div class="footer-text">
+            <div class="footer-title">Curso:</div>
+            Diseño Web<br /><br />
+            <div class="footer-title">Docente:</div>
+            Rosangela Abregú Marcos
+          </div>
+          <div class="footer-text">
+            <div class="footer-title">Examen Parcial II</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
